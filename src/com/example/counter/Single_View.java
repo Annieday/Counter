@@ -127,9 +127,6 @@ public class Single_View extends Activity
 		{
 
 			// TODO Auto-generated method stub
-			//Set<String> name_list=Counters.getStringSet("name list", new LinkedHashSet<String>());
-			//name_list.remove(counter_name);
-			//Counters.edit().putStringSet("name list",name_list).commit();
 			Each_Counts.edit().remove(counter_name).commit();
 			Intent push_intent=new Intent(Single_View.this,List_View.class);
 			startActivity(push_intent);
