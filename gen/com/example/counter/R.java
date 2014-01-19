@@ -26,27 +26,27 @@ public final class R {
     public static final class id {
         public static final int Add=0x7f080007;
         public static final int Add_Counter=0x7f080002;
-        public static final int Exit=0x7f080009;
+        public static final int Exit=0x7f080008;
         public static final int Linear=0x7f080005;
-        public static final int LinearLayout1=0x7f08000d;
+        public static final int LinearLayout1=0x7f08000c;
         public static final int Main_menu=0x7f080016;
-        public static final int Order=0x7f080008;
         public static final int Scroll=0x7f080004;
         public static final int View=0x7f080006;
         public static final int action_settings=0x7f080017;
-        public static final int back_to_list=0x7f080014;
-        public static final int counter_name=0x7f08000e;
+        public static final int back_to_list=0x7f080013;
+        public static final int counter_name=0x7f08000d;
         public static final int counters=0x7f080015;
-        public static final int counts=0x7f08000f;
-        public static final int increment=0x7f080010;
+        public static final int counts=0x7f08000e;
+        public static final int increment=0x7f08000f;
         public static final int instructions=0x7f080000;
         public static final int name=0x7f080001;
-        public static final int new_name=0x7f08000b;
-        public static final int ok=0x7f08000c;
-        public static final int remove=0x7f080013;
-        public static final int rename=0x7f080012;
-        public static final int rename_title=0x7f08000a;
-        public static final int reset=0x7f080011;
+        public static final int new_name=0x7f08000a;
+        public static final int notice=0x7f080014;
+        public static final int ok=0x7f08000b;
+        public static final int remove=0x7f080012;
+        public static final int rename=0x7f080011;
+        public static final int rename_title=0x7f080009;
+        public static final int reset=0x7f080010;
         public static final int title=0x7f080003;
     }
     public static final class layout {
@@ -64,9 +64,24 @@ public final class R {
         public static final int view=0x7f070004;
     }
     public static final class string {
+        public static final int Add_button=0x7f05000b;
+        public static final int Add_instruct=0x7f05000d;
+        public static final int Exit_button=0x7f05000c;
+        public static final int MM=0x7f050008;
+        public static final int View_button=0x7f05000a;
         public static final int action_settings=0x7f050001;
+        public static final int add_f_n=0x7f05000e;
         public static final int app_name=0x7f050000;
+        public static final int back_b=0x7f050015;
         public static final int hello_world=0x7f050002;
+        public static final int increment_b=0x7f050011;
+        public static final int instruction=0x7f050009;
+        public static final int note=0x7f050007;
+        public static final int ok=0x7f050010;
+        public static final int remove_b=0x7f050014;
+        public static final int rename_b=0x7f050013;
+        public static final int rename_ins=0x7f05000f;
+        public static final int reset_b=0x7f050012;
         public static final int title_activity_add=0x7f050003;
         public static final int title_activity_rename=0x7f050006;
         public static final int title_activity_single__view=0x7f050005;

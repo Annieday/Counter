@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="Enter the name of the counter:"
+        android:text="@string/Add_instruct"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -25,7 +25,8 @@
         android:layout_below="@+id/instructions"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
-        android:ems="10" >
+        android:ems="10"
+        android:inputType="text" >
 
         <requestFocus />
     </EditText>
@@ -37,6 +38,6 @@
         android:layout_below="@+id/name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="86dp"
-        android:text="Finish add" />
+        android:text="@string/add_f_n"/>
 
 </RelativeLayout>

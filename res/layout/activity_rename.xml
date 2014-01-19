@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Rename a Counter:"
+        android:text="@string/rename_ins"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
@@ -24,7 +24,8 @@
         android:layout_below="@+id/rename_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="133dp"
-        android:ems="10" >
+        android:ems="10"
+        android:inputType="text" >
 
         <requestFocus />
     </EditText>
@@ -36,6 +37,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="96dp"
-        android:text="OK" />
+        android:text="@string/ok" />
 
 </RelativeLayout>

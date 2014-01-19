@@ -1,10 +1,11 @@
 package com.example.counter;
 
 import java.util.ArrayList;
-//import java.util.LinkedHashSet;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-//import java.util.Set;
+import java.util.TreeMap;
+
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -33,15 +34,40 @@ public class List_View extends Activity
 		Back=(Button)findViewById(R.id.Main_menu);
 		SharedPreferences Each_Counts=getSharedPreferences(Each_Counts_label,0);
 		List<String> name_list=new ArrayList<String>();
-		for (Map.Entry<String, ?> pair: Each_Counts.getAll().entrySet()) {
-			name_list.add(pair.getKey().toString());
-		}
+		Map<String,?> counter_map = Each_Counts.getAll();
+		ValueComparator bvc =  new ValueComparator(counter_map);
+        TreeMap<String,Integer> sorted_map = new TreeMap<String,Integer>(bvc);
+        for (Map.Entry<String, ?> pair: counter_map.entrySet()) {
+			sorted_map.put(pair.getKey(),(Integer) pair.getValue());
+	    }
+        for(Map.Entry<String,?> pair: sorted_map.entrySet()){
+        	name_list.add(pair.getKey());
+        }
+		
 		String[] name_array = name_list.toArray(new String[0]);
 		ArrayAdapter<String> name_adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,name_array);
 		counter_name.setAdapter(name_adapter);
 		counter_name.setOnItemClickListener(new click_counter());
 		Back.setOnClickListener(new back_click());
 	}
+	// this part is the idea from http://stackoverflow.com/questions/109383/how-to-sort-a-mapkey-value-on-the-values-in-java
+	class ValueComparator implements Comparator<String> {
+
+	    Map<String, ?> base;
+	    public ValueComparator(Map<String,?> base) {
+	        this.base = base;
+	    }
+
+	    // Note: this comparator imposes orderings that are inconsistent with equals.    
+	    public int compare(String a, String b) {
+	        if ((Integer)base.get(a) >= (Integer)base.get(b)) {
+	            return 1;
+	        } else {
+	            return -1;
+	        } // returning 0 would merge keys
+	    }
+	}
+	
 	class click_counter implements OnItemClickListener{
 
 		@Override
@@ -54,6 +80,7 @@ public class List_View extends Activity
 			Intent intent=new Intent(List_View.this,Single_View.class);
 			intent.putExtra("counter_name",counter_name);
 			startActivity(intent);
+			finish();
 		}
 		
 	}

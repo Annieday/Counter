@@ -30,7 +30,6 @@ public class MainActivity extends Activity
 		//find all button by id
 		View=(Button)findViewById(R.id.View);
 		Add=(Button)findViewById(R.id.Add);
-		Order=(Button)findViewById(R.id.Order);
 		Exit=(Button)findViewById(R.id.Exit);
 		//Button setup
 		Exit.setOnClickListener(new exit_click());

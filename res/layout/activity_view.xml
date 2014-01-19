@@ -10,6 +10,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".View" >
 
+    <TextView
+        android:id="@+id/notice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/note" />
+
     <ListView
         android:id="@+id/counters"
         android:layout_width="match_parent"
@@ -20,6 +26,6 @@
         android:id="@+id/Main_menu"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Main Menu" />
+        android:text="@string/MM" />
 
 </LinearLayout>

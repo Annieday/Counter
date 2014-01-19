@@ -27,30 +27,30 @@
         android:id="@+id/increment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Increment" />
+        android:text="@string/increment_b" />
 
     <Button
         android:id="@+id/reset"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Reset" />
+        android:text="@string/reset_b" />
 
     <Button
         android:id="@+id/rename"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Rename" />
+        android:text="@string/rename_b" />
 
     <Button
         android:id="@+id/remove"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Remove" />
+        android:text="@string/remove_b" />
 
     <Button
         android:id="@+id/back_to_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="@string/back_b" />
 
 </LinearLayout>

@@ -1,7 +1,8 @@
 package com.example.counter;
 
-//import java.util.LinkedHashSet;
-//import java.util.Set;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,7 +17,8 @@ public class Single_View extends Activity
 {
 	//public static final String Counter="COUNTER NAME";
 	public static final String Each_Counts_label="COUNTER COUNTS";
-	//SharedPreferences Counters=null;
+	public static final String Date_rec="DATE REC";
+	SharedPreferences Dates=null;
 	SharedPreferences Each_Counts=null;
 	String counter_name=null;
 	int counts;
@@ -34,8 +36,10 @@ public class Single_View extends Activity
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_single__view);
-		//Counters=getSharedPreferences(Counter,0);
 		Each_Counts=getSharedPreferences(Each_Counts_label,0);
+		
+		Dates=getSharedPreferences(Date_rec,0);
+		
 		Intent intent=getIntent();
 		Counter_name=(TextView)findViewById(R.id.counter_name);
 		Counts=(TextView)findViewById(R.id.counts);
@@ -79,6 +83,9 @@ public class Single_View extends Activity
 			counts++;
 			Each_Counts.edit().putInt(counter_name,counts).commit();
 			Counts.setText(counts+"");
+			Set<String> date_list=Dates.getStringSet(counter_name,new HashSet<String>());
+			date_list.add((new Date()).toString());
+			Dates.edit().putStringSet(counter_name,date_list).commit();
 		}
 		
 	}
@@ -93,6 +100,7 @@ public class Single_View extends Activity
 			counts=0;
 			Each_Counts.edit().putInt(counter_name,counts).commit();
 			Counts.setText(counts+"");
+			Dates.edit().remove(counter_name).commit();
 		}
 		
 	}
@@ -107,6 +115,7 @@ public class Single_View extends Activity
 			Intent push_intent=new Intent(Single_View.this,Rename.class);
 			push_intent.putExtra("counter_name",counter_name);
 			startActivity(push_intent);
+			finish();
 		}
 		
 	}

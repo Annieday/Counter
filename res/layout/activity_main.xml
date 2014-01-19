@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Choose one of the following commands:" />
+        android:text="@string/instruction" />
 
     <ScrollView
         android:id="@+id/Scroll"
@@ -26,32 +26,26 @@
         <LinearLayout
             android:id="@+id/Linear"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <Button
                 android:id="@+id/View"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="View counters" />
+                android:text="@string/View_button" />
 
             <Button
                 android:id="@+id/Add"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Add a new counter" />
-
-            <Button
-                android:id="@+id/Order"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Order counters by count" />
+                android:text="@string/Add_button" />
 
             <Button
                 android:id="@+id/Exit"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Exit the App" />
+                android:text="@string/Exit_button" />
 
         </LinearLayout>
     </ScrollView>
