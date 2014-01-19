@@ -8,53 +8,41 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Single_View" >
+    tools:context=".View_menu" >
 
     <TextView
-        android:id="@+id/counter_name"
+        android:id="@+id/view_ins"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="@string/stat_view_ins"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/counts"
+    <Button
+        android:id="@+id/view_per_hour"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="50sp" />
+        android:text="@string/view_hour_b" />
 
     <Button
-        android:id="@+id/increment"
+        android:id="@+id/view_per_day"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/increment_b" />
+        android:text="@string/view_day_b" />
 
     <Button
-        android:id="@+id/reset"
+        android:id="@+id/view_per_week"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/reset_b" />
+        android:text="@string/view_week_b" />
 
     <Button
-        android:id="@+id/Stat"
+        android:id="@+id/view_per_month"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/stat_b" />
+        android:text="@string/view_month_b" />
 
     <Button
-        android:id="@+id/rename"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rename_b" />
-
-    <Button
-        android:id="@+id/remove"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/remove_b" />
-
-    <Button
-        android:id="@+id/back_to_list"
+        android:id="@+id/go_back"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/back_b" />

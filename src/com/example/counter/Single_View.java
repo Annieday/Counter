@@ -29,6 +29,7 @@ public class Single_View extends Activity
 	Button rename=null;
 	Button remove=null;
 	Button back_to_list=null;
+	Button Stat=null;
 	//List_name
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -57,6 +58,8 @@ public class Single_View extends Activity
 		remove.setOnClickListener(new remove_click());
 		back_to_list=(Button)findViewById(R.id.back_to_list);
 		back_to_list.setOnClickListener(new back_c());
+		Stat=(Button)findViewById(R.id.Stat);
+		Stat.setOnClickListener(new stat_click());
 	}
 	
 	class back_c implements OnClickListener{
@@ -105,6 +108,21 @@ public class Single_View extends Activity
 		
 	}
 	
+	class stat_click implements OnClickListener{
+
+		@Override
+		public void onClick(View v)
+		{
+
+			// TODO Auto-generated method stub
+			Intent push_intent=new Intent(Single_View.this,View_menu.class);
+			push_intent.putExtra("counter_name", counter_name);
+			startActivity(push_intent);
+			finish();
+		}
+		
+	}
+	
 	class rename_click implements OnClickListener{
 
 		@Override
@@ -128,6 +146,7 @@ public class Single_View extends Activity
 
 			// TODO Auto-generated method stub
 			Each_Counts.edit().remove(counter_name).commit();
+			Dates.edit().remove(counter_name).commit();
 			Intent push_intent=new Intent(Single_View.this,List_View.class);
 			startActivity(push_intent);
 			finish();

@@ -23,5 +23,13 @@
     <string name="rename_b">Rename</string>
     <string name="remove_b">Remove</string>
     <string name="back_b">Back</string>
+    <string name="stat_b">Summarize counts by time period</string>
+    <string name="title_activity_view_menu">View_menu</string>
+    <string name="stat_view_ins">Please choose one of the following commands:</string>
+    <string name="view_hour_b">view counts per hour </string>
+    <string name="view_day_b">view counts per day</string>
+    <string name="view_week_b">view counts per week</string>
+    <string name="view_month_b">view counts per month</string>
+    <string name="title_activity_stat_view">Stat_view</string>
 
 </resources>

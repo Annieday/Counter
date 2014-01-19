@@ -38,6 +38,14 @@
             android:name="com.example.counter.Rename"
             android:label="@string/title_activity_rename" >
         </activity>
+        <activity
+            android:name="com.example.counter.View_menu"
+            android:label="@string/title_activity_view_menu" >
+        </activity>
+        <activity
+            android:name="com.example.counter.Stat_view"
+            android:label="@string/title_activity_stat_view" >
+        </activity>
     </application>
 
 </manifest>
