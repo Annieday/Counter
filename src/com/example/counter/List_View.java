@@ -37,7 +37,7 @@ public class List_View extends Activity
 		Map<String,?> counter_map = Each_Counts.getAll();
 		ValueComparator bvc =  new ValueComparator(counter_map);
         TreeMap<String,Integer> sorted_map = new TreeMap<String,Integer>(bvc);
-        for (Map.Entry<String, ?> pair: counter_map.entrySet()) {
+        for (Map.Entry<String,?> pair: counter_map.entrySet()) {
 			sorted_map.put(pair.getKey(),(Integer) pair.getValue());
 	    }
         for(Map.Entry<String,?> pair: sorted_map.entrySet()){

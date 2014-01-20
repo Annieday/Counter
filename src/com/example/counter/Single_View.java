@@ -87,7 +87,7 @@ public class Single_View extends Activity
 			Each_Counts.edit().putInt(counter_name,counts).commit();
 			Counts.setText(counts+"");
 			Set<String> date_list=Dates.getStringSet(counter_name,new HashSet<String>());
-			date_list.add((new Date()).toString());
+			date_list.add(String.valueOf((new Date()).getTime()));
 			Dates.edit().putStringSet(counter_name,date_list).commit();
 		}
 		

@@ -41,8 +41,10 @@ public class Stat_view extends Activity
 		Iterator<String> date_str_iterator = date_list.iterator();
 		TreeSet<Date> sorted_date=new TreeSet<Date>();
 		while (date_str_iterator.hasNext()){
-			
+				sorted_date.add(new Date(Long.valueOf(date_str_iterator.next())));
 		}
+		//debug:
+		System.out.println(sorted_date);
 	}
 	
 	public static Date str_to_date(String str) throws ParseException{
