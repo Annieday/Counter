@@ -15,7 +15,7 @@ import android.widget.*;
 
 public class Single_View extends Activity
 {
-	//public static final String Counter="COUNTER NAME";
+	public static final String Rename_assist="RENAME";
 	public static final String Each_Counts_label="COUNTER COUNTS";
 	public static final String Date_rec="DATE REC";
 	SharedPreferences Dates=null;
@@ -28,7 +28,6 @@ public class Single_View extends Activity
 	Button reset=null;
 	Button rename=null;
 	Button remove=null;
-	Button back_to_list=null;
 	Button Stat=null;
 	//List_name
 	@Override
@@ -56,12 +55,30 @@ public class Single_View extends Activity
 		rename.setOnClickListener(new rename_click());
 		remove=(Button)findViewById(R.id.remove);
 		remove.setOnClickListener(new remove_click());
-		back_to_list=(Button)findViewById(R.id.back_to_list);
-		back_to_list.setOnClickListener(new back_c());
 		Stat=(Button)findViewById(R.id.Stat);
 		Stat.setOnClickListener(new stat_click());
 	}
 	
+	
+	
+	@Override
+	protected void onRestart()
+	{
+
+		// TODO Auto-generated method stub
+		super.onRestart();
+		SharedPreferences Rename_Assist=getSharedPreferences(Rename_assist,0);
+		String New_name=Rename_Assist.getString("New_name",null);
+		if(New_name!=null){
+			counter_name=New_name;
+			Counter_name.setText("Counter:   "+New_name);
+			Rename_Assist.edit().remove("New_name").commit();
+		}
+	}
+
+
+
+	//This class is just a backup for the back button
 	class back_c implements OnClickListener{
 
 		@Override
@@ -69,8 +86,9 @@ public class Single_View extends Activity
 		{
 
 			// TODO Auto-generated method stub
-			Intent push_intent=new Intent(Single_View.this,List_View.class);
-			startActivity(push_intent);
+			//changed
+			//Intent push_intent=new Intent(Single_View.this,List_View.class);
+			//startActivity(push_intent);
 			finish();
 		}
 		
@@ -118,7 +136,8 @@ public class Single_View extends Activity
 			Intent push_intent=new Intent(Single_View.this,View_menu.class);
 			push_intent.putExtra("counter_name", counter_name);
 			startActivity(push_intent);
-			finish();
+			//changed
+			//finish();
 		}
 		
 	}
@@ -133,7 +152,8 @@ public class Single_View extends Activity
 			Intent push_intent=new Intent(Single_View.this,Rename.class);
 			push_intent.putExtra("counter_name",counter_name);
 			startActivity(push_intent);
-			finish();
+			//changed
+			//finish();
 		}
 		
 	}
@@ -147,8 +167,9 @@ public class Single_View extends Activity
 			// TODO Auto-generated method stub
 			Each_Counts.edit().remove(counter_name).commit();
 			Dates.edit().remove(counter_name).commit();
-			Intent push_intent=new Intent(Single_View.this,List_View.class);
-			startActivity(push_intent);
+			//changed
+			//Intent push_intent=new Intent(Single_View.this,List_View.class);
+			//startActivity(push_intent);
 			finish();
 		}
 		

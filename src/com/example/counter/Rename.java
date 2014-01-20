@@ -16,10 +16,10 @@ public class Rename extends Activity
 {
 	EditText new_name_=null;
 	Button ok=null;
-	//public static final String Counter="COUNTER NAME";
+	public static final String Rename_assist="RENAME";
 	public static final String Each_Counts_label="COUNTER COUNTS";
 	public static final String Date_rec="DATE REC";
-	//SharedPreferences Counters=null;
+	SharedPreferences Rename_Assist=null;
 	SharedPreferences Dates=null;
 	SharedPreferences Each_Counts=null;
 	String counter_name=null;
@@ -61,9 +61,12 @@ public class Rename extends Activity
 				Set<String> date_list=Dates.getStringSet(counter_name, new HashSet<String>());
 				Dates.edit().putStringSet(New_name,date_list).commit();
 				Dates.edit().remove(counter_name).commit();
-				Intent push_intent=new Intent(Rename.this,Single_View.class);
-				push_intent.putExtra("counter_name",New_name);
-				startActivity(push_intent);
+				//changed
+				//Intent push_intent=new Intent(Rename.this,Single_View.class);
+				//push_intent.putExtra("counter_name",New_name);
+				//startActivity(push_intent);
+				Rename_Assist=getSharedPreferences(Rename_assist,0);
+				Rename_Assist.edit().putString("New_name",New_name).commit();
 				finish();
 			}
 		}

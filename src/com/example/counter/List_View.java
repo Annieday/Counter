@@ -50,6 +50,37 @@ public class List_View extends Activity
 		counter_name.setOnItemClickListener(new click_counter());
 		Back.setOnClickListener(new back_click());
 	}
+	
+	
+	
+	@Override
+	protected void onRestart()
+	{
+
+		// TODO Auto-generated method stub
+		//resort the list view
+		super.onRestart();
+		SharedPreferences Each_Counts=getSharedPreferences(Each_Counts_label,0);
+		List<String> name_list=new ArrayList<String>();
+		Map<String,?> counter_map = Each_Counts.getAll();
+		ValueComparator bvc =  new ValueComparator(counter_map);
+        TreeMap<String,Integer> sorted_map = new TreeMap<String,Integer>(bvc);
+        for (Map.Entry<String,?> pair: counter_map.entrySet()) {
+			sorted_map.put(pair.getKey(),(Integer) pair.getValue());
+	    }
+        for(Map.Entry<String,?> pair: sorted_map.entrySet()){
+        	name_list.add(pair.getKey());
+        }
+		
+		String[] name_array = name_list.toArray(new String[0]);
+		ArrayAdapter<String> name_adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,name_array);
+		counter_name.setAdapter(name_adapter);
+		//counter_name.setOnItemClickListener(new click_counter());
+		//Back.setOnClickListener(new back_click());
+	}
+
+
+
 	// this part is the idea from http://stackoverflow.com/questions/109383/how-to-sort-a-mapkey-value-on-the-values-in-java
 	class ValueComparator implements Comparator<String> {
 
@@ -80,7 +111,8 @@ public class List_View extends Activity
 			Intent intent=new Intent(List_View.this,Single_View.class);
 			intent.putExtra("counter_name",counter_name);
 			startActivity(intent);
-			finish();
+			//changed
+			//finish();
 		}
 		
 	}
@@ -92,8 +124,8 @@ public class List_View extends Activity
 		{
 
 			// TODO Auto-generated method stub
-			Intent push_intent=new Intent(List_View.this,MainActivity.class);
-			startActivity(push_intent);
+			//Intent push_intent=new Intent(List_View.this,MainActivity.class);
+			//startActivity(push_intent);
 			finish();
 		}
 		

@@ -43,18 +43,22 @@ public class Stat_view extends Activity
 		Dates=getSharedPreferences(Date_rec,0);
 		Set<String> date_list=Dates.getStringSet(counter_name, new HashSet<String>());
 		//Iterator<String> date_str_iterator = date_list.iterator();
-		TreeSet<Date> sorted_date=new TreeSet<Date>();
-		//while (date_str_iterator.hasNext()){
-			//sorted_date.add(new Date(Long.valueOf(date_str_iterator.next())));
-		//}
-		for (String date_str : date_list) {
-			sorted_date.add(new Date(Long.valueOf(date_str)));
+		
+		if(date_list.size()!=0){
+			TreeSet<Date> sorted_date=new TreeSet<Date>();
+			//while (date_str_iterator.hasNext()){
+				//sorted_date.add(new Date(Long.valueOf(date_str_iterator.next())));
+			//}
+			for (String date_str : date_list) {
+				sorted_date.add(new Date(Long.valueOf(date_str)));
+			}
+			//debug:
+			System.out.println(sorted_date);
+			String[] date_array=create_adapter(sorted_date,Tag);
+			ArrayAdapter<String> date_adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,date_array);
+			stat_list.setAdapter(date_adapter);
 		}
-		//debug:
-		System.out.println(sorted_date);
-		String[] date_array=create_adapter(sorted_date,Tag);
-		ArrayAdapter<String> date_adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,date_array);
-		stat_list.setAdapter(date_adapter);
+		
 	}
 	
 	public static Date str_to_date(String str) throws ParseException{
@@ -129,6 +133,9 @@ public class Stat_view extends Activity
 				String hour_present=finial_slices[3].split(":")[0]+":00";
 				view_list.add(finial_slices[5]+"-"+finial_slices[1]+"-"+finial_slices[2]+"-"+hour_present+"-----"+block_amount);
 			}
+		}
+		else{
+			
 		}
 		return view_list.toArray(new String[0]);
 	}

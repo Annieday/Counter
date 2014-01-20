@@ -53,10 +53,4 @@
         android:layout_height="wrap_content"
         android:text="@string/remove_b" />
 
-    <Button
-        android:id="@+id/back_to_list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/back_b" />
-
 </LinearLayout>
