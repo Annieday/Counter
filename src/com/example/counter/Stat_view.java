@@ -65,7 +65,7 @@ public class Stat_view extends Activity
 	
 	public static String[] create_adapter(TreeSet<Date> sorted_date,String tag){
 		List<String> view_list=new ArrayList<String>();
-		if(tag.equals("MONTH")){
+		if(tag.equals("WEEK")==false){
 			int count=0;
 			int block_amount=0;
 			Date prev=null;
@@ -82,19 +82,53 @@ public class Stat_view extends Activity
 					prev_c.setTime(prev);
 					current=date;
 					current_c.setTime(current);
-					if((prev_c.get(Calendar.YEAR)==current_c.get(Calendar.YEAR))&&(prev_c.get(Calendar.MONTH)==current_c.get(Calendar.MONTH))){
-						block_amount++;
+					if(tag.equals("MONTH")){
+						if((prev_c.get(Calendar.YEAR)==current_c.get(Calendar.YEAR))&&(prev_c.get(Calendar.MONTH)==current_c.get(Calendar.MONTH))){
+							block_amount++;
+						}
+						else{
+							String[] slices=prev.toString().split(" ");
+							view_list.add(slices[5]+"-"+slices[1]+"-----"+block_amount);
+							block_amount=1;
+						}
 					}
-					else{
-						String[] slices=prev.toString().split(" ");
-						view_list.add(slices[5]+"-"+slices[1]+"-----"+block_amount);
-						block_amount=1;
+					
+					else if(tag.equals("DAY")){
+						if( (prev_c.get(Calendar.YEAR)==current_c.get(Calendar.YEAR)) && (prev_c.get(Calendar.MONTH)==current_c.get(Calendar.MONTH)) && (prev_c.get(Calendar.DAY_OF_MONTH)==current_c.get(Calendar.DAY_OF_MONTH)) ){
+							block_amount++;
+						}
+						else{
+							String[] slices=prev.toString().split(" ");
+							view_list.add(slices[5]+"-"+slices[1]+"-"+slices[2]+"-----"+block_amount);
+							block_amount=1;
+						}
+					}
+					
+					else if(tag.equals("HOUR")){
+						if( (prev_c.get(Calendar.YEAR)==current_c.get(Calendar.YEAR)) && (prev_c.get(Calendar.MONTH)==current_c.get(Calendar.MONTH)) && (prev_c.get(Calendar.DAY_OF_MONTH)==current_c.get(Calendar.DAY_OF_MONTH)) && (prev_c.get(Calendar.HOUR_OF_DAY)==current_c.get(Calendar.HOUR_OF_DAY)) ){
+							block_amount++;
+						}
+						else{
+							String[] slices=prev.toString().split(" ");
+							String hour_present=slices[3].split(":")[0]+":00";
+							view_list.add(slices[5]+"-"+slices[1]+"-"+slices[2]+"-"+hour_present+"-----"+block_amount);
+							block_amount=1;
+						}
 					}
 				}
 				count++;
 			}
 			String[] finial_slices=current.toString().split(" ");
-			view_list.add(finial_slices[5]+"-"+finial_slices[1]+"-----"+block_amount);
+			if(tag.equals("MONTH")){
+				view_list.add(finial_slices[5]+"-"+finial_slices[1]+"-----"+block_amount);
+			}
+			else if(tag.equals("DAY")){
+				view_list.add(finial_slices[5]+"-"+finial_slices[1]+"-"+finial_slices[2]+"-----"+block_amount);
+			}
+			else if(tag.equals("HOUR")){
+				String hour_present=finial_slices[3].split(":")[0]+":00";
+				view_list.add(finial_slices[5]+"-"+finial_slices[1]+"-"+finial_slices[2]+"-"+hour_present+"-----"+block_amount);
+			}
 		}
 		return view_list.toArray(new String[0]);
 	}
