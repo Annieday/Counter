@@ -33,11 +33,10 @@ public final class R {
         public static final int Scroll=0x7f080004;
         public static final int Stat=0x7f080011;
         public static final int View=0x7f080006;
-        public static final int action_settings=0x7f08001f;
+        public static final int action_settings=0x7f08001e;
         public static final int counter_name=0x7f08000d;
         public static final int counters=0x7f080017;
         public static final int counts=0x7f08000e;
-        public static final int go_back=0x7f08001e;
         public static final int increment=0x7f08000f;
         public static final int instructions=0x7f080000;
         public static final int name=0x7f080001;

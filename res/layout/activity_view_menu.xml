@@ -41,10 +41,4 @@
         android:layout_height="wrap_content"
         android:text="@string/view_month_b" />
 
-    <Button
-        android:id="@+id/go_back"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/back_b" />
-
 </LinearLayout>

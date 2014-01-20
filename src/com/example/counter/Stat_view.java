@@ -135,7 +135,39 @@ public class Stat_view extends Activity
 			}
 		}
 		else{
-			
+			int prev_week_day;
+			int current_week_day;
+			int count=0;
+			int block_amount=0;
+			Date prev=null;
+			Date current=null;
+			Calendar prev_c = Calendar.getInstance();
+			Calendar current_c = Calendar.getInstance();
+			for(Date date : sorted_date){
+				if(count==0){
+					current=date;
+					block_amount++;
+				}
+				else{
+					prev=(Date)current.clone();
+					current=date;
+					prev_c.setTime(prev);
+					current_c.setTime(current);
+					prev_week_day=prev_c.get(Calendar.DAY_OF_WEEK);
+					current_week_day=current_c.get(Calendar.DAY_OF_WEEK);
+					if(((current.getTime()-prev.getTime())<604800000)&&((current_week_day-prev_week_day)>=0)){
+						block_amount++;
+					}
+					else{
+						String[] slices=prev.toString().split(" ");
+						view_list.add("Week of "+slices[5]+"-"+slices[1]+"-"+slices[2]+"-----"+block_amount);
+						block_amount=1;
+					}
+				}
+				count++;
+			}
+			String[] finial_slices=current.toString().split(" ");
+			view_list.add("Week of "+finial_slices[5]+"-"+finial_slices[1]+"-"+finial_slices[2]+"-----"+block_amount);
 		}
 		return view_list.toArray(new String[0]);
 	}

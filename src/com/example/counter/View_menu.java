@@ -15,7 +15,6 @@ public class View_menu extends Activity
 	Button view_per_day=null;
 	Button view_per_week=null;
 	Button view_per_month=null;
-	Button go_back=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -32,8 +31,6 @@ public class View_menu extends Activity
 		view_per_week.setOnClickListener(new vpw_click());
 		view_per_month=(Button)findViewById(R.id.view_per_month);
 		view_per_month.setOnClickListener(new vpm_click());
-		go_back=(Button)findViewById(R.id.go_back);
-		go_back.setOnClickListener(new gb_click());
 	}
 	
 	class vph_click implements OnClickListener{
