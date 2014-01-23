@@ -1,7 +1,6 @@
 package com.example.counter;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.google.gson.Gson;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,31 +15,38 @@ public class Rename extends Activity
 {
 	EditText new_name_=null;
 	Button ok=null;
-	public static final String Rename_assist="RENAME";
-	public static final String Each_Counts_label="COUNTER COUNTS";
-	public static final String Date_rec="DATE REC";
-	SharedPreferences Rename_Assist=null;
-	SharedPreferences Dates=null;
-	SharedPreferences Each_Counts=null;
+	public static final String Label="COUNTERS";
+	public static final String RENAME_HELPER="RENAME_HELPER";
+	SharedPreferences DataBase=null;
+	SharedPreferences Rename_helper=null;
 	String counter_name=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_rename);
-		//Counters=getSharedPreferences(Counter,0);
-		Each_Counts=getSharedPreferences(Each_Counts_label,0);
-		
-		Dates=getSharedPreferences(Date_rec,0);
-		
-		Intent intent=getIntent();
-		counter_name=intent.getStringExtra("counter_name");
 		new_name_=(EditText)findViewById(R.id.new_name);
 		ok=(Button)findViewById(R.id.ok);
 		ok.setOnClickListener(new ok_click());
 	}
+	
+	
+
+
+
+	@Override
+	protected void onStart()
+	{
+
+		// TODO Auto-generated method stub
+		super.onStart();
+		DataBase=getSharedPreferences(Label,0);
+		Intent intent=getIntent();
+		counter_name=intent.getStringExtra("counter_name");
+	}
+
+
 
 
 
@@ -50,23 +56,17 @@ public class Rename extends Activity
 		public void onClick(View v){
 
 			// TODO Auto-generated method stub
+			Rename_helper=getSharedPreferences(RENAME_HELPER,0);
 			String New_name=new_name_.getText().toString().replaceAll("\\s+","-");
-			int counts=Each_Counts.getInt(counter_name,0);
-			if(Each_Counts.contains(New_name)){
-				Toast.makeText(getApplicationContext(), "This counter name already appears or it is the same as the old name of this counter.",Toast.LENGTH_SHORT).show();
+			Gson gson=new Gson();
+			Counter_list All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
+			boolean res=All_Counters.Rename(counter_name,New_name);
+			if(res==false){
+				Toast.makeText(getApplicationContext(),"This counter name already appears or it is the same as the old name of this counter.",Toast.LENGTH_SHORT).show();
 			}
 			else{
-				Each_Counts.edit().putInt(New_name,counts).commit();
-				Each_Counts.edit().remove(counter_name).commit();
-				Set<String> date_list=Dates.getStringSet(counter_name, new HashSet<String>());
-				Dates.edit().putStringSet(New_name,date_list).commit();
-				Dates.edit().remove(counter_name).commit();
-				//changed
-				//Intent push_intent=new Intent(Rename.this,Single_View.class);
-				//push_intent.putExtra("counter_name",New_name);
-				//startActivity(push_intent);
-				Rename_Assist=getSharedPreferences(Rename_assist,0);
-				Rename_Assist.edit().putString("New_name",New_name).commit();
+				DataBase.edit().putString("all_counters",gson.toJson(All_Counters)).commit();
+				Rename_helper.edit().putString("rename",New_name).commit();
 				finish();
 			}
 		}

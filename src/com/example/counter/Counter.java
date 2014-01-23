@@ -10,23 +10,22 @@ import java.util.TreeSet;
 
 public class Counter{
 	
-	int count=0;
-	String counter_name=null;
-	Set<Date> Dates= new TreeSet<Date>();
+	private int count=0;
+	private String counter_name=null;
+	private Set<Long> Time= new TreeSet<Long>();
 	
 	public Counter(String name){
-		//super();
 		counter_name=name;
 	}
 	
 	public void increment(){
 		count++;
-		Dates.add(new Date());
+		Time.add((new Date()).getTime());
 	}
 	
 	public void reset(){
 		count=0;
-		Dates.clear();
+		Time.clear();
 	}
 	
 	public void rename(String New_name){
@@ -42,6 +41,10 @@ public class Counter{
 	}
 	
 	public String[] getArrayAdapterForDate(String tag){
+		Set<Date> Dates=new TreeSet<Date>();
+		for(Long time : Time){
+			Dates.add(new Date(time));
+		}
 		List<String> view_list=new ArrayList<String>();
 		if(tag.equals("WEEK")==false){
 			int count=0;

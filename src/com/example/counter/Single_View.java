@@ -1,8 +1,6 @@
 package com.example.counter;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.gson.Gson;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -15,13 +13,11 @@ import android.widget.*;
 
 public class Single_View extends Activity
 {
-	public static final String Rename_assist="RENAME";
-	public static final String Each_Counts_label="COUNTER COUNTS";
-	public static final String Date_rec="DATE REC";
-	SharedPreferences Dates=null;
-	SharedPreferences Each_Counts=null;
+	public static final String Label="COUNTERS";
+	public static final String RENAME_HELPER="RENAME_HELPER";
+	SharedPreferences DataBase=null;
+	SharedPreferences Rename_helper=null;
 	String counter_name=null;
-	int counts;
 	TextView Counter_name=null;
 	TextView Counts=null;
 	Button increment=null;
@@ -29,6 +25,7 @@ public class Single_View extends Activity
 	Button rename=null;
 	Button remove=null;
 	Button Stat=null;
+	Counter_list All_Counters=null;
 	//List_name
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -36,17 +33,8 @@ public class Single_View extends Activity
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_single__view);
-		Each_Counts=getSharedPreferences(Each_Counts_label,0);
-		
-		Dates=getSharedPreferences(Date_rec,0);
-		
-		Intent intent=getIntent();
 		Counter_name=(TextView)findViewById(R.id.counter_name);
 		Counts=(TextView)findViewById(R.id.counts);
-		counter_name=intent.getStringExtra("counter_name");
-		Counter_name.setText("Counter:   "+counter_name);
-		counts=Each_Counts.getInt(counter_name,0);
-		Counts.setText(counts+"");
 		increment=(Button)findViewById(R.id.increment);
 		increment.setOnClickListener(new increment_click());
 		reset=(Button)findViewById(R.id.reset);
@@ -57,41 +45,29 @@ public class Single_View extends Activity
 		remove.setOnClickListener(new remove_click());
 		Stat=(Button)findViewById(R.id.Stat);
 		Stat.setOnClickListener(new stat_click());
+		Intent intent=getIntent();
+		counter_name=intent.getStringExtra("counter_name");
+		Counter_name.setText("Counter:   "+counter_name);
 	}
 	
 	
 	
 	@Override
-	protected void onRestart()
+	protected void onStart()
 	{
 
 		// TODO Auto-generated method stub
-		super.onRestart();
-		SharedPreferences Rename_Assist=getSharedPreferences(Rename_assist,0);
-		String New_name=Rename_Assist.getString("New_name",null);
-		if(New_name!=null){
-			counter_name=New_name;
-			Counter_name.setText("Counter:   "+New_name);
-			Rename_Assist.edit().remove("New_name").commit();
+		super.onStart();
+		DataBase=getSharedPreferences(Label,0);
+		Gson gson=new Gson();
+		All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
+		Rename_helper=getSharedPreferences(RENAME_HELPER,0);
+		if(Rename_helper.contains("rename")){
+			Counter_name.setText(Rename_helper.getString("rename", ""));
+			counter_name=Rename_helper.getString("rename", "");
+			Rename_helper.edit().remove("rename").commit();
 		}
-	}
-
-
-
-	//This class is just a backup for the back button
-	class back_c implements OnClickListener{
-
-		@Override
-		public void onClick(View v)
-		{
-
-			// TODO Auto-generated method stub
-			//changed
-			//Intent push_intent=new Intent(Single_View.this,List_View.class);
-			//startActivity(push_intent);
-			finish();
-		}
-		
+		Counts.setText(All_Counters.getCounts(counter_name)+"");
 	}
 	
 	class increment_click implements OnClickListener{
@@ -101,12 +77,11 @@ public class Single_View extends Activity
 		{
 
 			// TODO Auto-generated method stub
-			counts++;
-			Each_Counts.edit().putInt(counter_name,counts).commit();
-			Counts.setText(counts+"");
-			Set<String> date_list=Dates.getStringSet(counter_name,new HashSet<String>());
-			date_list.add(String.valueOf((new Date()).getTime()));
-			Dates.edit().putStringSet(counter_name,date_list).commit();
+			Gson gson=new Gson();
+			All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
+			All_Counters.increment_counter(counter_name);
+			DataBase.edit().putString("all_counters",gson.toJson(All_Counters)).commit();
+			Counts.setText(All_Counters.getCounts(counter_name)+"");
 		}
 		
 	}
@@ -116,12 +91,11 @@ public class Single_View extends Activity
 		@Override
 		public void onClick(View v)
 		{
-
-			// TODO Auto-generated method stub
-			counts=0;
-			Each_Counts.edit().putInt(counter_name,counts).commit();
-			Counts.setText(counts+"");
-			Dates.edit().remove(counter_name).commit();
+			Gson gson=new Gson();
+			All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
+			All_Counters.reset_counter(counter_name);
+			DataBase.edit().putString("all_counters",gson.toJson(All_Counters)).commit();
+			Counts.setText(All_Counters.getCounts(counter_name)+"");
 		}
 		
 	}
@@ -136,8 +110,6 @@ public class Single_View extends Activity
 			Intent push_intent=new Intent(Single_View.this,View_menu.class);
 			push_intent.putExtra("counter_name", counter_name);
 			startActivity(push_intent);
-			//changed
-			//finish();
 		}
 		
 	}
@@ -152,8 +124,6 @@ public class Single_View extends Activity
 			Intent push_intent=new Intent(Single_View.this,Rename.class);
 			push_intent.putExtra("counter_name",counter_name);
 			startActivity(push_intent);
-			//changed
-			//finish();
 		}
 		
 	}
@@ -163,13 +133,10 @@ public class Single_View extends Activity
 		@Override
 		public void onClick(View arg0)
 		{
-
-			// TODO Auto-generated method stub
-			Each_Counts.edit().remove(counter_name).commit();
-			Dates.edit().remove(counter_name).commit();
-			//changed
-			//Intent push_intent=new Intent(Single_View.this,List_View.class);
-			//startActivity(push_intent);
+			Gson gson=new Gson();
+			All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
+			All_Counters.Remove(counter_name);
+			DataBase.edit().putString("all_counters",gson.toJson(All_Counters)).commit();
 			finish();
 		}
 		

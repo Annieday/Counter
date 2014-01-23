@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Comparator;
+import java.util.TreeSet;
 
 
 public class Counter_list{
 	Map<String,Counter> Counters= new HashMap<String,Counter>();
-	ValueComparator bvc =  new ValueComparator(Counters);
+	CountComparator cmp =  new CountComparator();
+	int size=0;
 	
 	public Counter_list(){
 		
@@ -22,8 +23,12 @@ public class Counter_list{
 		}
 		else{
 			Counters.put(New_name,new Counter(New_name));
+			size++;
 			return true;
 		}
+	}
+	public int getSize(){
+		return size;
 	}
 	
 	public void increment_counter(String counter_name){
@@ -41,7 +46,13 @@ public class Counter_list{
 	public void Remove(String counter_name){
 		if(Counters.containsKey(counter_name)){
 			Counters.remove(counter_name);
+			size--;
 		}
+	}
+	
+	public int getCounts(String counter_name){
+		Counter c = Counters.get(counter_name);
+		return c.get_count();
 	}
 	
 	public boolean Rename(String counter_name, String new_name){
@@ -51,31 +62,33 @@ public class Counter_list{
 		else{
 			Counter c= Counters.get(counter_name);
 			c.rename(new_name);
+			Counters.put(new_name, c);
+			Counters.remove(counter_name);
 			return true;
 		}
 	}
 	
+	public String[] getDateViewAdapter(String counter_name,String tag){
+		Counter c= Counters.get(counter_name);
+		return c.getArrayAdapterForDate(tag);
+	}
+	
 	public String[] getListViewAdapter(){
-		TreeMap<String,Counter> SortedCounters=new TreeMap<String,Counter>(bvc);
+		TreeSet<Counter> SortedCounters=new TreeSet<Counter>(cmp);
 	    for(Map.Entry<String,Counter> pair: Counters.entrySet()){
-	    	SortedCounters.put(pair.getKey(),pair.getValue());
+	    	SortedCounters.add(pair.getValue());
 		}
 	    List<String> name_list=new ArrayList<String>();
-	    for(Map.Entry<String,Counter> pair: SortedCounters.entrySet()){
-	    	name_list.add(pair.getKey()+"   "+pair.getValue().get_count());
+	    for(Counter c : SortedCounters){
+	    	name_list.add(c.get_counter_name());
 	    }
 	    return name_list.toArray(new String[0]);
 	}
-	
-	class ValueComparator implements Comparator<String>{
-		Map<String,Counter> base;
-	    public ValueComparator(Map<String,Counter> base) {
-	        this.base = base;
-	    }
+
+	class CountComparator implements Comparator<Counter>{
 		@Override
-		public int compare(String a, String b){
-			
-			if(base.get(a).get_count()>=base.get(b).get_count()){
+		public int compare(Counter a,Counter b){
+			if(a.get_count()>=b.get_count()){
 				return 1;
 			}
 			else{

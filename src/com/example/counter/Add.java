@@ -1,5 +1,7 @@
 package com.example.counter;
 
+import com.google.gson.Gson;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +16,8 @@ public class Add extends Activity{
 	Button Add_Counter=null;
 	String new_name=null;
 	
-	public static final String Each_Counts_label="COUNTER COUNTS";
+	public static final String Label="COUNTERS";
+	SharedPreferences DataBase=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -32,13 +35,16 @@ public class Add extends Activity{
 		public void onClick(View v){
 
 			// TODO Auto-generated method stub
-			SharedPreferences Each_Counts=getSharedPreferences(Each_Counts_label,0);
+			DataBase=getSharedPreferences(Label,0);
+			Gson gson=new Gson();
+			Counter_list All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
 			new_name=name.getText().toString().replaceAll("\\s+","-");
-			if(Each_Counts.contains(new_name)){
+			boolean res=All_Counters.Add(new_name);
+			if(res==false){
 				Toast.makeText(getApplicationContext(), "This counter name already appears.",Toast.LENGTH_SHORT).show();
 			}
 			else{
-				Each_Counts.edit().putInt(new_name,0).commit();
+				DataBase.edit().putString("all_counters",gson.toJson(All_Counters)).commit();
 				Intent intent=new Intent(Add.this,List_View.class);
 				startActivity(intent);
 				finish();
