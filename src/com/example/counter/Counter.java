@@ -41,6 +41,11 @@ public class Counter{
 	}
 	
 	public String[] getArrayAdapterForDate(String tag){
+		if(Time.size()==0){
+			//System.out.println("0 counts");
+			String[] empty_array={};
+			return empty_array;
+		}
 		Set<Date> Dates=new TreeSet<Date>();
 		for(Long time : Time){
 			Dates.add(new Date(time));
