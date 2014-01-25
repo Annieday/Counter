@@ -9,9 +9,9 @@ import java.util.TreeSet;
 
 
 public class Counter_list{
-	Map<String,Counter> Counters= new HashMap<String,Counter>();
-	CountComparator cmp =  new CountComparator();
-	int size=0;
+	private Map<String,Counter> Counters= new HashMap<String,Counter>();
+	private CountComparator cmp =  new CountComparator();
+	private int size=0;
 	
 	public Counter_list(){
 		
