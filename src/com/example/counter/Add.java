@@ -38,7 +38,8 @@ public class Add extends Activity{
 			DataBase=getSharedPreferences(Label,0);
 			Gson gson=new Gson();
 			Counter_list All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
-			new_name=name.getText().toString().replaceAll("\\s+","-");
+			//new_name=name.getText().toString().replaceAll("\\s+","-");
+			new_name=name.getText().toString();
 			boolean res=All_Counters.Add(new_name);
 			if(res==false){
 				Toast.makeText(getApplicationContext(), "This counter name already appears.",Toast.LENGTH_SHORT).show();

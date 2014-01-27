@@ -57,7 +57,8 @@ public class Rename extends Activity
 
 			// TODO Auto-generated method stub
 			Rename_helper=getSharedPreferences(RENAME_HELPER,0);
-			String New_name=new_name_.getText().toString().replaceAll("\\s+","-");
+			//String New_name=new_name_.getText().toString().replaceAll("\\s+","-");
+			String New_name=new_name_.getText().toString();
 			Gson gson=new Gson();
 			Counter_list All_Counters=gson.fromJson(DataBase.getString("all_counters",gson.toJson(new Counter_list())),Counter_list.class);
 			boolean res=All_Counters.Rename(counter_name,New_name);
