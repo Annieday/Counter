@@ -11,15 +11,9 @@ public class MainActivity extends Activity
 {
 	//set variable
 	//LinearLayout Linear=null;
-	Button View=null;
-	Button Add=null;
-	Button Increment=null;
-	Button Remove=null;
-	Button Edit=null;
-	Button Reset=null;
-	Button Order=null;
-	Button Stat=null;
-	Button Exit=null;
+	private Button View=null;
+	private Button Add=null;
+	private Button Exit=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
