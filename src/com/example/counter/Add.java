@@ -12,12 +12,11 @@ import android.view.View.OnClickListener;
 import android.widget.*;
 
 public class Add extends Activity{
-	EditText name=null;
-	Button Add_Counter=null;
-	String new_name=null;
-	
 	public static final String Label="COUNTERS";
-	SharedPreferences DataBase=null;
+	private EditText name=null;
+	private Button Add_Counter=null;
+	private String new_name=null;
+	private SharedPreferences DataBase=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

@@ -16,11 +16,11 @@ import android.widget.TextView;
 public class Stat_view extends Activity
 {
 	public static final String Label="COUNTERS";
-	TextView stat_title=null;
-	SharedPreferences DataBase=null;
-	ListView stat_list=null;
-	String counter_name=null;
-    String Tag=null;
+	private TextView stat_title=null;
+	private SharedPreferences DataBase=null;
+	private ListView stat_list=null;
+	private String counter_name=null;
+    private String Tag=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

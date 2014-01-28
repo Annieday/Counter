@@ -10,11 +10,11 @@ import android.widget.Button;
 
 public class View_menu extends Activity
 {
-	String counter_name=null;
-	Button view_per_hour=null;
-	Button view_per_day=null;
-	Button view_per_week=null;
-	Button view_per_month=null;
+	private String counter_name=null;
+	private Button view_per_hour=null;
+	private Button view_per_day=null;
+	private Button view_per_week=null;
+	private Button view_per_month=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

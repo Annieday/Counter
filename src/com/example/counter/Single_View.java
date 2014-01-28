@@ -15,17 +15,17 @@ public class Single_View extends Activity
 {
 	public static final String Label="COUNTERS";
 	public static final String RENAME_HELPER="RENAME_HELPER";
-	SharedPreferences DataBase=null;
-	SharedPreferences Rename_helper=null;
-	String counter_name=null;
-	TextView Counter_name=null;
-	TextView Counts=null;
-	Button increment=null;
-	Button reset=null;
-	Button rename=null;
-	Button remove=null;
-	Button Stat=null;
-	Counter_list All_Counters=null;
+	private SharedPreferences DataBase=null;
+	private SharedPreferences Rename_helper=null;
+	private String counter_name=null;
+	private TextView Counter_name=null;
+	private TextView Counts=null;
+	private Button increment=null;
+	private Button reset=null;
+	private Button rename=null;
+	private Button remove=null;
+	private Button Stat=null;
+	private Counter_list All_Counters=null;
 	//List_name
 	@Override
 	protected void onCreate(Bundle savedInstanceState)

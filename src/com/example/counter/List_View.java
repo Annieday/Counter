@@ -19,9 +19,9 @@ import android.content.SharedPreferences;
 public class List_View extends Activity
 {
 	public static final String Label="COUNTERS";
-	ListView counter_name=null;
-	Button Back=null;
-	SharedPreferences DataBase=null;
+	private ListView counter_name=null;
+	private Button Back=null;
+	protected SharedPreferences DataBase=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 

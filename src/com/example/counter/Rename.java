@@ -13,13 +13,13 @@ import android.widget.*;
 
 public class Rename extends Activity
 {
-	EditText new_name_=null;
-	Button ok=null;
 	public static final String Label="COUNTERS";
 	public static final String RENAME_HELPER="RENAME_HELPER";
-	SharedPreferences DataBase=null;
-	SharedPreferences Rename_helper=null;
-	String counter_name=null;
+	private EditText new_name_=null;
+	private Button ok=null;
+	private SharedPreferences DataBase=null;
+	private SharedPreferences Rename_helper=null;
+	private String counter_name=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
