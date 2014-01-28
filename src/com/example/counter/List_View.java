@@ -21,7 +21,7 @@ public class List_View extends Activity
 	public static final String Label="COUNTERS";
 	private ListView counter_name=null;
 	private Button Back=null;
-	protected SharedPreferences DataBase=null;
+	private SharedPreferences DataBase=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 
