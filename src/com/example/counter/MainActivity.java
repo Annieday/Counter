@@ -41,10 +41,10 @@ public class MainActivity extends Activity
 			finish();
 			//System.exit(0);
 			//android.os.Process.killProcess(android.os.Process.myPid());
-		    Intent push_intent = new Intent(Intent.ACTION_MAIN); 
-		    push_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
-		    push_intent.addCategory(Intent.CATEGORY_HOME);
-		    startActivity(push_intent);
+		    //Intent push_intent = new Intent(Intent.ACTION_MAIN); 
+		    //push_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+		    //push_intent.addCategory(Intent.CATEGORY_HOME);
+		    //startActivity(push_intent);
 		}
 		
 	}
