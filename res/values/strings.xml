@@ -8,7 +8,7 @@
     <string name="title_activity_view">View</string>
     <string name="title_activity_single__view">Single_View</string>
     <string name="title_activity_rename">Rename</string>
-    <string name="note">Counters are sorted by counts from low to high</string>
+    <string name="note">Counters are sorted by counts from high to low</string>
     <string name="MM">Main Menu</string>
     <string name="instruction">Please choose one of the following commands:</string>
     <string name="View_button">View Counters</string>
