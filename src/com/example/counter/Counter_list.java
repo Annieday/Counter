@@ -89,10 +89,10 @@ public class Counter_list{
 		@Override
 		public int compare(Counter a,Counter b){
 			if(a.get_count()>=b.get_count()){
-				return 1;
+				return -1;
 			}
 			else{
-				return -1;
+				return 1;
 			}
 		}
 		

@@ -12,11 +12,11 @@ If you wish to exit the application, just click the "Exit the App" button.
 If you wish to add a counter, click the "Add a new Counter" button, then type the counter name and click "Add" button,
 (note that the counter name must be distinct from other counters, other wise this application will notify you and you 
 need to type it again.) After added the new counter, the application will display a scrollable list of your counter names 
-(include the one you just created and its sorted by the counts from low to high) and a "Main Menu" button.
+(include the one you just created and its sorted by the counts from high to low) and a "Main Menu" button.
 If you just want to view the counters you created before, just click the "View Counters" button, then the application 
 will display a scrollable list of your counter names sorted by counts and a "Main Menu" button.
 ========================================================
-In the scrollable list of your counter names (sorted by the counts from low to high):
+In the scrollable list of your counter names (sorted by the counts from high to low):
 If you wish to go back to main menu, just click the "Main Menu" button, or you can click the back button on your phone 
 (both will work).
 If you wish do some operation on a single counter(eg: increment,reset,rename,remove,view count stat), just click the 
