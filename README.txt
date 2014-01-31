@@ -21,7 +21,7 @@ If you wish to go back to main menu, just click the "Main Menu" button, or you c
 (both will work).
 If you wish do some operation on a single counter(eg: increment,reset,rename,remove,view count stat), just click the 
 name of that counter, then the application will display a single view of that counter.
-=======================================================
+========================================================
 In the single view of a counter: you will see 5 buttons: "Increment","Reset","Summarize counts by time period","Rename"
 "remove" also with the counter name and it's counts.
 If you wish to Increment this counter, click "Increment" button and it will add 1 to the counts of this counter.
@@ -35,6 +35,22 @@ If you wish to view the counts statistic of this counter, click "Summarize count
 you 4 options (4 buttons) "view counts per hour","view counts per day","view counts per week","view counts per month".
 click each of them will Provide a scrollable list of counter counts over time aggregated by the time period you choosen.(
 if wish go back, click the back button on your phone)
-======================================================
+========================================================
 If you exit the App, it will remember everthing you did.
-======================================================
+========================================================
+License
+========================================================
+
+Copyright 2014 Xuping Fang
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
